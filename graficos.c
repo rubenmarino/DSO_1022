@@ -1,6 +1,5 @@
 #include "main.h"
-#define BLUR_TEXT_TAM 128
-#define LUMINOSIDAD 200
+#define BLUR_TEXT_TAM 256
 
 DWORD WINAPI InitGL(HWND hDlg) // Tarea de dibujado
 {
@@ -55,7 +54,7 @@ DWORD WINAPI InitGL(HWND hDlg) // Tarea de dibujado
     glShadeModel(GL_FLAT);
 
     // Color de fondo de pantalla
-    glClearColor(0, 0.12, 0, 0);
+    glClearColor(0, 0.12f, 0, 0);
 
     // Crear una textura vacia para el blur
     GLuint blur_textura;
@@ -119,7 +118,7 @@ void RenderWave(void) // Renderizar forma de onda almacenada en los buffers
     {
         xx = ((GLfloat) 2 * cont / screen_len[time_div]) - 1;
         yy = (GLfloat) CH1Data[cont] / 32768;
-        glColor3f(1, 1, 1);
+        glColor4f(1, 1, 1, 0.05f);
         glVertex2f(xx, yy);
     }
     glEnd();
@@ -145,7 +144,7 @@ void RenderWave(void) // Renderizar forma de onda almacenada en los buffers
         glVertex2f(xx, yy);
     }
     glEnd();
-    /*
+    
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_POLYGON);
     glColor3f(1, 1, 1);
@@ -158,7 +157,7 @@ void RenderWave(void) // Renderizar forma de onda almacenada en los buffers
     glTexCoord2i(1, 0);
     glVertex2f(1, -1);
     glEnd();
-    glDisable(GL_TEXTURE_2D);*/
+    glDisable(GL_TEXTURE_2D);
 
     glFinish();
 }
