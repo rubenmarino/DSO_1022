@@ -117,7 +117,7 @@ void RenderWave(void) // Renderizar forma de onda almacenada en los buffers
     for (cont = 0; cont < screen_len[time_div]; cont++)
     {
         xx = ((GLfloat) 2 * cont / screen_len[time_div]) - 1;
-        yy = (GLfloat) CH1Data[cont] / 32768;
+        yy = (GLfloat) CH1Data[cont] / 128;
         glColor4f(1, 1, 1, 0.05f);
         glVertex2f(xx, yy);
     }
@@ -139,7 +139,7 @@ void RenderWave(void) // Renderizar forma de onda almacenada en los buffers
     for (cont = 0; cont < screen_len[time_div]; cont++)
     {
         xx = ((GLfloat) 2 * cont / screen_len[time_div]) - 1;
-        yy = (GLfloat) CH1Data[cont] / 32768;
+        yy = (GLfloat) CH1Data[cont] / 128;
         glColor4f(1, 1, 1, 0.1f);
         glVertex2f(xx, yy);
     }

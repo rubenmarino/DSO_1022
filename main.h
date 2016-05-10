@@ -19,6 +19,8 @@
 #define OSC_RUN 1
 
 /*****************  Constantes  ***********************/
+#define RAW_TO_VOLT(IN, VDIV) ((float)IN * VDIV / 32)
+
 #define TIEMPOS 30
 #define VOLTAJES 8
 #define DEVICEINDEX 0
@@ -43,6 +45,8 @@ byte *sourceBitmap, *targetBitmap;
 // los ultimos 2 casilleros (2s y 5s) se deben formar con 2 o mas escaneos del osciloscopio
 static ULONG buffer_len[32] = {1016,1016,1016,1016,1016,1016,1016,1016,1016,1016,1016,130048,130048,130048,130048,130048,130048,130048,130048,130048,523264,523264,523264,1047552,1047552,1047552,1047552,1047552,1047552,1047552};
 static ULONG screen_len[32] = {960,960,960,960,960,960,960,960,960,960,960,800,800,800,500,1000,2000,5000,10000,20000,50000,100000,200000,500000,1000000,1000000,1000000,1000000,2000000,5000000};
+
+static float volt_div[8] = {0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5};
 
 struct
 {
