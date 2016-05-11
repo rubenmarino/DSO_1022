@@ -120,6 +120,7 @@ void RenderWave(void) // Renderizar forma de onda almacenada en los buffers
         yy = (GLfloat) CH1Data[cont] / 128;
         glColor4f(1, 1, 1, 0.05f);
         glVertex2f(xx, yy);
+      //glVertex2f(xx, yy+0.01f);
     }
     glEnd();
 
@@ -127,13 +128,13 @@ void RenderWave(void) // Renderizar forma de onda almacenada en los buffers
     glViewport(0, 0, viewport_size[2], viewport_size[3]); //Volver el viewport a su tamaño orig.
 
     glGetTexImage(GL_TEXTURE_2D, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, sourceBitmap);
-    gaussBlur_4(sourceBitmap, targetBitmap, BLUR_TEXT_TAM, BLUR_TEXT_TAM, 1.5f);
+    gaussBlur_4(sourceBitmap, targetBitmap, BLUR_TEXT_TAM, BLUR_TEXT_TAM, 2.0f);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, BLUR_TEXT_TAM, BLUR_TEXT_TAM, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, targetBitmap);
 
     glClear(GL_COLOR_BUFFER_BIT);
 
     glEnable(GL_LINE_SMOOTH); // Activar Antialiasing
-    glLineWidth(1.5f);
+    glLineWidth(1.2f);
 
     glBegin(GL_LINE_STRIP);
     for (cont = 0; cont < screen_len[time_div]; cont++)
@@ -142,6 +143,7 @@ void RenderWave(void) // Renderizar forma de onda almacenada en los buffers
         yy = (GLfloat) CH1Data[cont] / 128;
         glColor4f(1, 1, 1, 0.1f);
         glVertex2f(xx, yy);
+      //glVertex2f(xx, yy+0.005f);
     }
     glEnd();
     
