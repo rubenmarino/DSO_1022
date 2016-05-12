@@ -71,13 +71,17 @@ DWORD WINAPI InitGL(HWND hDlg) // Tarea de dibujado
     // enlazar la textura al color del FBO
     glBindFramebuffer(GL_FRAMEBUFFER, mifbo); //Activar framebuffer de usuario
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, blur_textura, 0);
-
+    
+    // acomodar la ventana la primera vez
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    OglFlag = OGL_DEFORMAR; 
+    
     while (1) // loop de renderizado
     {
         switch (OglFlag)
         {
         case (OGL_DEFORMAR):
-            InverseStretch(hDlg, ID_GRAFICO, 420, BLUR_TEXT_TAM);
+            InverseStretch(hDlg, ID_GRAFICO, 420, 128);
             OglFlag = OGL_RUN;
             break;
 
@@ -89,10 +93,9 @@ DWORD WINAPI InitGL(HWND hDlg) // Tarea de dibujado
             free(targetBitmap);
             return TRUE;
         }
-
+        
         glBindFramebuffer(GL_FRAMEBUFFER, mifbo); //Activar framebuffer de usuario
         RenderWave();
-
         Sleep(10); // Throttle the loop. If we don't put a sleep here, the thread will use 100% cpu
     }
 }
