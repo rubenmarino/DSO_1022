@@ -122,13 +122,13 @@ void RenderWave(void) // Renderizar forma de onda almacenada en los buffers
 
     glEnable(GL_LINE_SMOOTH); // activar Antialiasing
     glLineWidth(1.0f);
+    glColor4f(1, 1, 1, 0.05f);
     
     glBegin(GL_LINE_STRIP);
     for (cont = 0; cont < screen_len[time_div]; cont++)
     {
         xx = ((GLfloat) 2 * cont / screen_len[time_div]) - 1;
         yy = (GLfloat) CH1Data[cont] / 128;
-        glColor4f(1, 1, 1, 0.05f);
         glVertex2f(xx, yy);
       //glVertex2f(xx, yy+0.01f);
     }
@@ -145,13 +145,13 @@ void RenderWave(void) // Renderizar forma de onda almacenada en los buffers
 
     glEnable(GL_LINE_SMOOTH); // Activar Antialiasing
     glLineWidth(1.2f);
+    glColor4f(1, 1, 1, 0.1f);
 
     glBegin(GL_LINE_STRIP);
     for (cont = 0; cont < screen_len[time_div]; cont++)
     {
         xx = ((GLfloat) 2 * cont / screen_len[time_div]) - 1;
         yy = (GLfloat) CH1Data[cont] / 128;
-        glColor4f(1, 1, 1, 0.1f);
         glVertex2f(xx, yy);
       //glVertex2f(xx, yy+0.005f);
     }
