@@ -2,17 +2,17 @@
 
 void PlayOsc(void)
 {
-    /*unsigned __int32 sample;
+    unsigned __int32 sample;
       while (OSC_Flag != OSC_STOP)
       {
           float coso = 0;
           for (sample = 0; sample < buffer_len[time_div]; sample++)
           {
               coso = coso + 0.000001f;
-              CH1Data[sample] = sinf ((float)sample * coso ) * 20000;
+              CH1Data[sample] = sinf ((float)sample * coso ) * 100;
           }
           Sleep(100);
-      }*/
+      }
 
 
     short lectura;

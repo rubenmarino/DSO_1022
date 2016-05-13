@@ -110,12 +110,19 @@ void RenderWave(void) // Renderizar forma de onda almacenada en los buffers
     glGetIntegerv(GL_VIEWPORT, viewport_size);
     glViewport(0, 0, BLUR_TEXT_TAM, BLUR_TEXT_TAM);
 
-    // borra la pantalla
-    glClear(GL_COLOR_BUFFER_BIT);
+    glBlendFunc(GL_DST_COLOR, GL_ZERO);
+    glColor3f(0.9f, 0.9f, 0.9f);
+    glBegin(GL_QUADS);
+    glVertex2f(-1, -1);
+    glVertex2f(-1, 1);
+    glVertex2f(1, 1);
+    glVertex2f(1, -1);
+    glEnd();
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
     glEnable(GL_LINE_SMOOTH); // activar Antialiasing
     glLineWidth(1.0f);
-
+    
     glBegin(GL_LINE_STRIP);
     for (cont = 0; cont < screen_len[time_div]; cont++)
     {
@@ -164,7 +171,7 @@ void RenderWave(void) // Renderizar forma de onda almacenada en los buffers
     glEnd();
     glDisable(GL_TEXTURE_2D);
 
-    glFinish();
+    glFlush();
 }
 
 
