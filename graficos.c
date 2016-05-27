@@ -110,8 +110,9 @@ void RenderWave(void) // Renderizar forma de onda almacenada en los buffers
     glGetIntegerv(GL_VIEWPORT, viewport_size);
     glViewport(0, 0, BLUR_TEXT_TAM, BLUR_TEXT_TAM);
 
-    glBlendFunc(GL_DST_COLOR, GL_ZERO);
-    glColor3f(0.9f, 0.9f, 0.9f);
+    glBlendEquation (GL_FUNC_REVERSE_SUBTRACT);
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_COLOR);
+    glColor3f(0.05f, 0.05f, 0.05f);
     glBegin(GL_QUADS);
     glVertex2f(-1, -1);
     glVertex2f(-1, 1);
@@ -119,6 +120,7 @@ void RenderWave(void) // Renderizar forma de onda almacenada en los buffers
     glVertex2f(1, -1);
     glEnd();
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    glBlendEquation (GL_FUNC_ADD);
 
     glEnable(GL_LINE_SMOOTH); // activar Antialiasing
     glLineWidth(1.0f);
